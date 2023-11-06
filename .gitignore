@@ -15,12 +15,8 @@ wheels/
 # pytorch/python/numpy formats
 *.pth
 *.pkl
-*.npy
 *.ts
 model_ts*.txt
-
-# onnx models
-*.onnx
 
 # ipython/jupyter notebooks
 **/.ipynb_checkpoints/
