@@ -15,6 +15,8 @@ const Tool = ({ handleMouseMove }: ToolProps) => {
     maskImg: [maskImg, setMaskImg],
   } = useContext(AppContext)!;
 
+  const [data, setData] = useState<any[]>([]);
+
   // Determine if we should shrink or grow the images to match the
   // width or the height of the page and setup a ResizeObserver to
   // monitor changes in the size of the page
@@ -52,6 +54,7 @@ const Tool = ({ handleMouseMove }: ToolProps) => {
           onMouseMove={handleMouseMove}
           onMouseOut={() => _.defer(() => setMaskImg(null))}
           onTouchStart={handleMouseMove}
+          onClick={() => setData([...data, maskImg?.src])}
           src={image.src}
           className={`${
             shouldFitToWidth ? "w-full" : "h-full"
@@ -66,6 +69,15 @@ const Tool = ({ handleMouseMove }: ToolProps) => {
           } ${maskImageClasses}`}
         ></img>
       )}
+      {data?.map((item: string, index: number) => (
+        <img
+          key={index}
+          src={item}
+          className={`${
+            shouldFitToWidth ? "w-full" : "h-full"
+          } ${maskImageClasses}`}
+        ></img>
+      ))}
     </>
   );
 };
